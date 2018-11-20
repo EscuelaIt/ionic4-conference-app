@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>todos</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="openAlert()">
+        <ion-icon name="add" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item *ngFor="let todo of $todos | async">
+      <ion-label>{{ todo.title }}</ion-label>
+      <ion-checkbox [checked]="todo.completed"></ion-checkbox>
+    </ion-item>
+  </ion-list>
+</ion-content>

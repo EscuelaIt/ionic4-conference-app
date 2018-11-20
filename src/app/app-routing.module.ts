@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'tutorial',
+    redirectTo: 'schedule',
     pathMatch: 'full'
   },
   { path: 'schedule', loadChildren: './schedule/schedule.module#SchedulePageModule' },
@@ -14,7 +14,9 @@ const routes: Routes = [
   { path: 'about', loadChildren: './about/about.module#AboutPageModule' },
   { path: 'speakers', loadChildren: './speakers/speakers.module#SpeakersPageModule' },
   { path: 'speaker-detail', loadChildren: './speaker-detail/speaker-detail.module#SpeakerDetailPageModule' },
-  { path: 'tutorial', loadChildren: './tutorial/tutorial.module#TutorialPageModule' }
+  { path: 'tutorial', loadChildren: './tutorial/tutorial.module#TutorialPageModule' },
+  { path: 'todos', loadChildren: './todos/todos.module#TodosPageModule' },
+  { path: 'todos-firebase', loadChildren: './todos-firebase/todos-firebase.module#TodosFirebasePageModule' }
 ];
 
 @NgModule({

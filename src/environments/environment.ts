@@ -3,7 +3,15 @@
 // `ng build --env=prod` then `environment.prod.ts` will be used instead.
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 export const environment = {
-  production: false
+  production: false,
+  firebase: {
+    apiKey: 'AIzaSyCxaD8xexyKpFLSMMXJtw6vAJE757Cv4fU',
+    authDomain: 'ionic4-conference-app.firebaseapp.com',
+    databaseURL: 'https://ionic4-conference-app.firebaseio.com',
+    projectId: 'ionic4-conference-app',
+    storageBucket: 'ionic4-conference-app.appspot.com',
+    messagingSenderId: '86033575916'
+  }
 };
 
 /*

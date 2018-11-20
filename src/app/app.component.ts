@@ -34,6 +34,16 @@ export class AppComponent {
       title: 'Tutorial',
       url: '/tutorial',
       icon: 'bonfire'
+    },
+    {
+      title: 'Tareas',
+      url: '/todos',
+      icon: 'list'
+    },
+    {
+      title: 'Tareas Firebase',
+      url: '/todos-firebase',
+      icon: 'list'
     }
   ];
 
