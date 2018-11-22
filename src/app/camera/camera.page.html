@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>camera</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-button (click)="takePicture()">
+    Take picture
+  </ion-button>
+  <ion-img [src]="image" *ngIf="image" (click)="share()"></ion-img>
+</ion-content>

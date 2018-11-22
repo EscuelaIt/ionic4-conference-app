@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { LoadingController } from '@ionic/angular';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
-import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
-import { WebView } from '@ionic-native/ionic-webview/ngx';
+
+declare var google;
 
 @Component({
   selector: 'app-map',
@@ -10,42 +11,51 @@ import { WebView } from '@ionic-native/ionic-webview/ngx';
 })
 export class MapPage implements OnInit {
 
-  image: string;
+  map;
 
   constructor(
     private geolocation: Geolocation,
-    private camera: Camera,
-    private webView: WebView
+    private loadingCtrl: LoadingController
   ) { }
 
   ngOnInit() {
     this.getCurrentPosition();
   }
 
-  getCurrentPosition() {
-    this.geolocation.getCurrentPosition()
-    .then(response => {
-      console.log(response);
+  async getCurrentPosition() {
+    const rta = await this.geolocation.getCurrentPosition();
+    const myLatLng = {
+      lat: rta.coords.latitude,
+      lng: rta.coords.longitude
+    };
+    this.loadMap(myLatLng);
+  }
+
+  async loadMap(myLatLng) {
+    const loading = await this.loadingCtrl.create();
+    await loading.present();
+    const mapEle: HTMLElement = document.getElementById('map');
+    this.map = new google.maps.Map(mapEle, {
+      center: myLatLng,
+      zoom: 12
+    });
+    google.maps.event
+    .addListenerOnce(this.map, 'idle', async () => {
+      console.log('mapa cargado');
+      await loading.dismiss();
+      this.addMarker(myLatLng);
     });
   }
 
-  takePicture() {
-    // tslint:disable-next-line:max-line-length
-    const options: CameraOptions = {
-      quality: 100,
-      destinationType: this.camera.DestinationType.FILE_URI,
-      encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE,
-      sourceType: this.camera.PictureSourceType.CAMERA,
-      cameraDirection: this.camera.Direction.FRONT,
-    };
-    this.camera.getPicture(options)
-    .then(imageData => {
-      imageData = this.webView.convertFileSrc(imageData);
-      this.image = imageData;
-    })
-    .catch(error => {
-      console.log(error);
+  private addMarker(myLatLng) {
+    const marker = new google.maps.Marker({
+      position: {
+        lat: myLatLng.lat,
+        lng: myLatLng.lng
+      },
+      zoom: 8,
+      map: this.map,
+      title: 'Hello World!'
     });
   }
 

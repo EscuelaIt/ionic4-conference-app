@@ -16,7 +16,9 @@ const routes: Routes = [
   { path: 'speaker-detail', loadChildren: './speaker-detail/speaker-detail.module#SpeakerDetailPageModule' },
   { path: 'tutorial', loadChildren: './tutorial/tutorial.module#TutorialPageModule' },
   { path: 'todos', loadChildren: './todos/todos.module#TodosPageModule' },
-  { path: 'todos-firebase', loadChildren: './todos-firebase/todos-firebase.module#TodosFirebasePageModule' }
+  { path: 'todos-firebase', loadChildren: './todos-firebase/todos-firebase.module#TodosFirebasePageModule' },
+  { path: 'camera', loadChildren: './camera/camera.module#CameraPageModule' },
+  { path: 'register', loadChildren: './register/register.module#RegisterPageModule' }
 ];
 
 @NgModule({
